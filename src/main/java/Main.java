@@ -16,12 +16,13 @@ public class Main {
 
         String[] pascoePhrases = {"Hi there!", "What's up?", "Nice weather, isn't it?"};
         Pascoe pascoe = new Pascoe(false, pascoePhrases);
+
         Luis luis = new Luis(true);
 
         Dream dream = new Dream(new Animal[]{pascoe, luis}, new Object[]{smacksGrave});
 
         pascoe.stayAround(smacksGrave);
-        pascoe.lookAt(luis);
+        pascoe.speakToSomeone(luis);
 
         luis.terrible();
         pascoe.grin();
@@ -36,7 +37,7 @@ public class Main {
         };
         pascoe.pointTo(something);
 
-        luis.lookAt(something);
+        luis.speakToSomeone(something);
         luis.scream();
         luis.cry();
 
@@ -50,7 +51,7 @@ public class Main {
         luis.fallOnKnees();
 
         pascoe.sayTo(luis, "You're not supposed to open the door.");
-        pascoe.lookAt(luis);
+        pascoe.speakToSomeone(luis);
         pascoe.sayTo(luis, "Don't go there, no matter how much you want to. This boundary must not be destroyed. Remember: There's more power there than you think. It is an ancient force, and it knows no rest. Remember that.");
 
         dream.wakeUp();

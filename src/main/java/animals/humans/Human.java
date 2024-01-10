@@ -14,7 +14,7 @@ public abstract class Human extends Animal {
     protected String description = "";
     protected State state = State.NOTHING;
 
-    public abstract void lookAt(Object obj);
+    public abstract void speakToSomeone(Object obj);
 
     public State getState() {
         return state;

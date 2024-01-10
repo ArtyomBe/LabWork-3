@@ -9,9 +9,10 @@ public class Luis extends Human implements Terrible, Screamable, Cryable, Thinka
     }
 
     @Override
-    public void lookAt(Object obj) {
-        System.out.printf("%s looked at %s %n", name, obj);
+    public void speakToSomeone(Object obj) {
+        System.out.printf("%s spoke to %s %n", name, obj);
     }
+
 
     @Override
     public void terrible() {
