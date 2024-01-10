@@ -14,7 +14,8 @@ public class Main {
         Cat smack = new Smack(false);
         Grave smacksGrave = new Grave(smack);
 
-        Pascoe pascoe = new Pascoe(false);
+        String[] pascoePhrases = {"Hi there!", "What's up?", "Nice weather, isn't it?"};
+        Pascoe pascoe = new Pascoe(false, pascoePhrases);
         Luis luis = new Luis(true);
 
         Dream dream = new Dream(new Animal[]{pascoe, luis}, new Object[]{smacksGrave});
