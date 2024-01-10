@@ -41,62 +41,57 @@ public class Luis extends Human implements Terrible, Screamable, Cryable, Thinka
     }
 
     @Override
-    public void speakToSomeone(Object obj) {
-        if (obj instanceof Interaction) {
-            Interaction other = (Interaction) obj;
+    public void speakToSomeone(Object other) {
+        // Добавьте проверку, является ли объект типа Human, чтобы получить доступ к полю name
+        if (other instanceof Human) {
+            Human otherHuman = (Human) other;
+            String phrase = phraseContainer.getNextPhrase();
 
-            // Добавьте проверку, является ли объект типа Human, чтобы получить доступ к полю name
-            if (other instanceof Human) {
-                Human otherHuman = (Human) other;
-                String phrase = phraseContainer.getNextPhrase();
-
-                if (other instanceof Luis) {
-                    Luis otherLuis = (Luis) other;
-                    otherLuis.addPhrase(phrase);
-                }
-
-                System.out.printf("%s spoke to %s: '%s'%n", name, otherHuman.name, phrase);
-            } else {
-                System.out.println("Invalid interaction! The object is not an instance of Human.");
+            if (other instanceof Luis) {
+                Luis otherLuis = (Luis) other;
+                otherLuis.addPhrase(phrase);
             }
+
+            System.out.printf("%s spoke to %s: '%s'%n", name, otherHuman.name, phrase);
         } else {
-            System.out.println("Invalid interaction!");
+            System.out.println("Invalid interaction! The object is not an instance of Human.");
         }
     }
-@Override
+
+    @Override
     public void terrible() {
-        System.out.printf("%s's horror grew %n", name);
+        System.out.printf("%s's horror grew%n", name);
         setState(State.FEAR);
-        System.out.println("The gentle but relentless pressure on the brain increased %n");
+        System.out.println("The gentle but relentless pressure on the brain increased%n");
     }
 
     @Override
     public void scream() {
-        System.out.printf("%s groaned %n", name);
+        System.out.printf("%s groaned%n", name);
         setState(State.SCREAM);
-        System.out.println("His eyes widened and he raised his fists to his mouth. His cheeks were wet, and he realized that he was crying from extreme terror. %n");
+        System.out.println("His eyes widened and he raised his fists to his mouth. His cheeks were wet, and he realized that he was crying from extreme terror.%n");
     }
 
     @Override
     public void cry() {
-        System.out.printf("%s's cheeks were wet, and he realized that he was crying from extreme terror. %n", name);
+        System.out.printf("%s's cheeks were wet, and he realized that he was crying from extreme terror.%n", name);
         setState(State.CRY);
     }
 
     @Override
     public void croak() {
-        System.out.printf("But %s could only croak weakly %n", name);
+        System.out.printf("But %s could only croak weakly%n", name);
         setState(State.CROAK);
     }
 
     @Override
     public void think(String minds) {
-        System.out.printf("%s is thinking that %s %n", name, minds);
+        System.out.printf("%s is thinking that %s%n", name, minds);
         setState(State.THINK);
     }
 
     @Override
     public void fallOnKnees() {
-        System.out.printf("%s fell to his knees %n", name);
+        System.out.printf("%s fell to his knees%n", name);
     }
 }

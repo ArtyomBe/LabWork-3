@@ -48,45 +48,40 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
 
     @Override
     public void speakToSomeone(Object obj) {
-        if (obj instanceof Interaction) {
-            Interaction other = (Interaction) obj;
+        // Добавьте проверку, является ли объект типа Human, чтобы получить доступ к полю name
+        if (obj instanceof Human) {
+            Human otherHuman = (Human) obj;
+            String phrase = phraseContainer.getNextPhrase();
 
-            // Добавьте проверку, является ли объект типа Human, чтобы получить доступ к полю name
-            if (other instanceof Human) {
-                Human otherHuman = (Human) other;
-                String phrase = phraseContainer.getNextPhrase();
+            if (obj instanceof Pascoe) {
+                Pascoe otherPascoe = (Pascoe) obj;
+                otherPascoe.addPhrase(phrase);
+            }
 
-                if (other instanceof Pascoe) {
-                    Pascoe otherPascoe = (Pascoe) other;
-                    otherPascoe.addPhrase(phrase);
-                }
+            System.out.printf("%s turned around to %s and said: '%s'%n", name, otherHuman.name, phrase);
 
-                System.out.printf("%s turned around to %s and said: '%s'%n", name, otherHuman.name, phrase);
-
-                // Добавим условия для вывода различных предложений в зависимости от выбранной фразы
-                switch (phrase) {
-                    case "Hi there!":
-                        System.out.println("Pascoe greeted with a friendly smile.");
-                        break;
-                    case "What's up?":
-                        System.out.println("Pascoe asked, curious about the latest news.");
-                        break;
-                    case "Nice weather, isn't it?":
-                        System.out.println("Pascoe commented on the pleasant weather.");
-                        break;
-                    // Добавьте другие предложения по мере необходимости
-                    default:
-                        System.out.println("Pascoe said something interesting.");
-                        break;
-                }
-            } else {
-                System.out.println("Invalid interaction! The object is not an instance of Human.");
+            // Добавим условия для вывода различных предложений в зависимости от выбранной фразы
+            switch (phrase) {
+                case "Hi there!":
+                    System.out.println("Pascoe greeted with a friendly smile.");
+                    break;
+                case "What's up?":
+                    System.out.println("Pascoe asked, curious about the latest news.");
+                    break;
+                case "Nice weather, isn't it?":
+                    System.out.println("Pascoe commented on the pleasant weather.");
+                    break;
+                // Добавьте другие предложения по мере необходимости
+                default:
+                    System.out.println("Pascoe said something interesting.");
+                    break;
             }
         } else {
-            System.out.println("Invalid interaction!");
+            System.out.println("Invalid interaction! The object is not an instance of Human.");
         }
     }
-@Override
+
+    @Override
     public void stayAround(Object obj) {
         System.out.printf("%s stay around %s %n", name, obj);
     }
@@ -124,8 +119,8 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
     }
 
     private String getNextPhrase() {
-        String phrase = pascoePhrases[currentPhraseIndex];
-        currentPhraseIndex = (currentPhraseIndex + 1) % pascoePhrases.length;
+        String phrase = pascoePhrases.get(currentPhraseIndex);
+        currentPhraseIndex = (currentPhraseIndex + 1) % pascoePhrases.size();
         return phrase;
     }
 }
