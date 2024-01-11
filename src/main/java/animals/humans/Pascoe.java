@@ -1,84 +1,18 @@
 package animals.humans;
 
+import animals.humans.Human;
 import animals.humans.states.State;
 import interfaces.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-// Класс для хранения фраз Паскоу
-class PascoePhraseContainer {
-    private List<String> pascoePhrases;
-    private int currentPhraseIndex;
-
-    public PascoePhraseContainer(String[] phrases) {
-        this.pascoePhrases = new ArrayList<>(List.of(phrases));
-        this.currentPhraseIndex = 0;
-    }
-
-    public String getNextPhrase() {
-        String phrase = pascoePhrases.get(currentPhraseIndex);
-        currentPhraseIndex = (currentPhraseIndex + 1) % pascoePhrases.size();
-        return phrase;
-    }
-
-    public void addPhrase(String newPhrase) {
-        pascoePhrases.add(newPhrase);
-    }
-}
-
-public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayable, Interaction {
-
-    private PascoePhraseContainer phraseContainer;
-
+public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayable {
     public Pascoe(boolean isAlive) {
         super("Pascoe", isAlive);
         setDescription("dead");
-        this.phraseContainer = new PascoePhraseContainer(new String[]{"Hi there!", "What's up?", "Nice weather, isn't it?"});
-    }
-
-    public Pascoe(boolean isAlive, String[] pascoePhrases) {
-        this(isAlive);
-        this.phraseContainer = new PascoePhraseContainer(pascoePhrases);
-    }
-
-    public void addPhrase(String newPhrase) {
-        phraseContainer.addPhrase(newPhrase);
     }
 
     @Override
-    public void speakToSomeone(Object obj) {
-        // Добавьте проверку, является ли объект типа Human, чтобы получить доступ к полю name
-        if (obj instanceof Human) {
-            Human otherHuman = (Human) obj;
-            String phrase = phraseContainer.getNextPhrase();
-
-            if (obj instanceof Pascoe) {
-                Pascoe otherPascoe = (Pascoe) obj;
-                otherPascoe.addPhrase(phrase);
-            }
-
-            System.out.printf("%s turned around to %s and said: '%s'%n", name, otherHuman.name, phrase);
-
-            // Добавим условия для вывода различных предложений в зависимости от выбранной фразы
-            switch (phrase) {
-                case "Hi there!":
-                    System.out.println("Pascoe greeted with a friendly smile.");
-                    break;
-                case "What's up?":
-                    System.out.println("Pascoe asked, curious about the latest news.");
-                    break;
-                case "Nice weather, isn't it?":
-                    System.out.println("Pascoe commented on the pleasant weather.");
-                    break;
-                // Добавьте другие предложения по мере необходимости
-                default:
-                    System.out.println("Pascoe said something interesting.");
-                    break;
-            }
-        } else {
-            System.out.println("Invalid interaction! The object is not an instance of Human.");
-        }
+    public void lookAt(Object obj) {
+        System.out.printf("%s turned around to %s %n", name, obj);
     }
 
     @Override
@@ -93,11 +27,14 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
         System.out.println("The bloody lips parted, exposing teeth; the disfigured face shone ghastly white under the moon. %n");
     }
 
-    public Upperable hand() {
-        return () -> System.out.printf("%s raised his hand %n", name);
+    public Upperable hand(){
+        Upperable hand = () -> {
+            System.out.printf("%s raised his hand %n", name);
+        };
+        return hand;
     }
 
-    public void pointTo(Object something) {
+    public void pointTo(Object something){
         System.out.printf("%s point out to %s %n", name, something);
     }
 
@@ -112,15 +49,5 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
         setState(State.SPEAK);
         System.out.printf("%s say to %s that %s %n", name, person.name, speech);
     }
-
-    @Override
-    public void interact(Interaction partner) {
-        speakToSomeone(partner);
-    }
-
-    private String getNextPhrase() {
-        String phrase = pascoePhrases.get(currentPhraseIndex);
-        currentPhraseIndex = (currentPhraseIndex + 1) % pascoePhrases.size();
-        return phrase;
-    }
 }
+
