@@ -39,14 +39,13 @@ public class CommunicationMethod {
                 "Вечером город просыпался к огням, словно тысячи звезд спускались с небес, чтобы озарить городскую суету."
         );
 
+        // Устанавливаем максимальное количество обменов, чтобы избежать бесконечного цикла
+        int maxExchanges = Math.min(phrasesPascoe.size(), phrasesLuis.size());
+
+        // Вместо цикла обмена фразами используем while для бесконечного обмена
+
         communicate(Pascoe, Luis, phrasesPascoe, phrasesLuis);
         System.out.println("Вот и поговорили");
-
-        // Второй обмен
-        communicate(Pascoe, Luis, phrasesPascoe, phrasesLuis);
-        System.out.println("Вот и поговорили");
-
-        // Третий обмен
         communicate(Pascoe, Luis, phrasesPascoe, phrasesLuis);
         System.out.println("Вот и поговорили");
     }
@@ -59,10 +58,5 @@ public class CommunicationMethod {
         System.out.println(person2.getName() + ": " + person2Phrases.get(person2Index));
 
         exchangeCounter++;
-
-        // Сбросить счетчик, если достигнут предел одного из массивов
-        if (exchangeCounter % person1Phrases.size() == 0 || exchangeCounter % person2Phrases.size() == 0) {
-            exchangeCounter = 0;
-        }
     }
 }
