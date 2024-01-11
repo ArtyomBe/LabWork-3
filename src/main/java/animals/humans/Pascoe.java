@@ -50,4 +50,3 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
         System.out.printf("%s say to %s that %s %n", name, person.name, speech);
     }
 }
-
