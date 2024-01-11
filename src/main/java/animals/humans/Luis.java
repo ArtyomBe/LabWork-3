@@ -5,7 +5,7 @@ import interfaces.*;
 
 public class Luis extends Human implements Terrible, Screamable, Cryable, Thinkable, Fallable {
     public Luis(boolean isAlive) {
-        super("Luis", isAlive);
+        super("Luis");
     }
 
     @Override

@@ -1,12 +1,11 @@
 package animals.humans;
 
-import animals.humans.Human;
 import animals.humans.states.State;
 import interfaces.*;
 
 public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayable {
     public Pascoe(boolean isAlive) {
-        super("Pascoe", isAlive);
+        super("Pascoe");
         setDescription("dead");
     }
 

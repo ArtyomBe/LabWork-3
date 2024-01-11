@@ -7,8 +7,8 @@ import animals.types.Type;
 import java.util.Objects;
 
 public abstract class Human extends Animal {
-    protected Human(String name, boolean isAlive){
-        super(name, Type.HUMAN, isAlive);
+    protected Human(String name) {
+        super(name, Type.HUMAN, true); // Предположим, что все люди изначально живы
     }
 
     protected String description = "";
@@ -48,6 +48,9 @@ public abstract class Human extends Animal {
                 && Objects.equals(isAlive, human.isAlive());
     }
 
+    public String getName() {
+        return name;
+    }
     @Override
     public int hashCode() {
         return Objects.hash(description, name, isAlive);
