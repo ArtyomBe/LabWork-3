@@ -4,8 +4,8 @@ import animals.humans.states.State;
 import interfaces.*;
 
 public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayable {
-    public Pascoe(boolean isAlive) {
-        super("Pascoe");
+    public Pascoe(boolean isAlive, int health) {
+        super("Pascoe", health);
         setDescription("dead");
     }
 
@@ -47,5 +47,12 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
     public void sayTo(Human person, String speech) {
         setState(State.SPEAK);
         System.out.printf("%s say to %s that %s %n", name, person.name, speech);
+    }
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

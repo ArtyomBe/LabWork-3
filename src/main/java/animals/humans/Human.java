@@ -7,8 +7,15 @@ import animals.types.Type;
 import java.util.Objects;
 
 public abstract class Human extends Animal {
-    protected Human(String name) {
-        super(name, Type.HUMAN, true); // Предположим, что все люди изначально живы
+    protected int health;
+
+    protected Human(String name, int health) {
+        super(name, Type.HUMAN, true);
+        this.health = health;
+    }
+
+    public int getHealth() {
+        return health;
     }
 
     protected String description = "";
@@ -47,7 +54,6 @@ public abstract class Human extends Animal {
                 && Objects.equals(name, human.name)
                 && Objects.equals(isAlive, human.isAlive());
     }
-
     public String getName() {
         return name;
     }

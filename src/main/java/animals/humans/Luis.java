@@ -4,8 +4,9 @@ import animals.humans.states.State;
 import interfaces.*;
 
 public class Luis extends Human implements Terrible, Screamable, Cryable, Thinkable, Fallable {
-    public Luis(boolean isAlive) {
-        super("Luis");
+    public Luis(boolean isAlive, int health) {
+        super("Luis", health);
+        setDescription("alive");
     }
 
     @Override
@@ -48,5 +49,12 @@ public class Luis extends Human implements Terrible, Screamable, Cryable, Thinka
     @Override
     public void fallOnKnees() {
         System.out.printf("%s fell to his knees %n", name);
+    }
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }
