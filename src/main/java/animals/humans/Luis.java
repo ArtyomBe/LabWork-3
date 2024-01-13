@@ -1,11 +1,12 @@
 package animals.humans;
 
 import animals.humans.states.State;
+import interfaces.CoordinatesManager;
 import interfaces.*;
 
-public class Luis extends Human implements Terrible, Screamable, Cryable, Thinkable, Fallable {
-    public Luis(boolean isAlive, int health) {
-        super("Luis", health);
+public class Luis extends Human implements Terrible, Screamable, Cryable, Thinkable, Fallable, CoordinatesManager {
+    public Luis(boolean isAlive, int health, int initialX, int initialY) {
+        super("Luis", health, initialX, initialY);
         setDescription("alive");
     }
 
@@ -50,6 +51,49 @@ public class Luis extends Human implements Terrible, Screamable, Cryable, Thinka
     public void fallOnKnees() {
         System.out.printf("%s fell to his knees %n", name);
     }
+
+    // Реализация интерфейса CoordinatesManager
+    @Override
+    public void setCoordinates(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
+    @Override
+    public void printCoordinates() {
+        System.out.printf("%s's coordinates: (%d, %d)%n", name, x, y);
+    }
+
+    @Override
+    public void moveTo(int destinationX, int destinationY, int speed) {
+        int deltaX = destinationX - x;
+        int deltaY = destinationY - y;
+
+        double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        double timeToReach = distance / speed;
+
+        while (timeToReach > 0) {
+            double step = Math.min(10, timeToReach); // Шаг не более 10 единиц
+            x += (int) (deltaX / distance * step);
+            y += (int) (deltaY / distance * step);
+
+            // Вывод координат
+            System.out.printf("%s is now at coordinates (%d, %d)%n", name, x, y);
+
+            timeToReach -= step;
+        }
+    }
+
     public int getHealth() {
         return health;
     }

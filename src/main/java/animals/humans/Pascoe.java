@@ -3,10 +3,51 @@ package animals.humans;
 import animals.humans.states.State;
 import interfaces.*;
 
-public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayable {
-    public Pascoe(boolean isAlive, int health) {
-        super("Pascoe", health);
+public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayable, CoordinatesManager {
+    public Pascoe(boolean isAlive, int health, int initialX, int initialY) {
+        super("Pascoe", health, initialX, initialY);
         setDescription("dead");
+    }
+
+    @Override
+    public void setCoordinates(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
+    @Override
+    public void printCoordinates() {
+        System.out.printf("%s's coordinates: (%d, %d)%n", name, x, y);
+    }
+
+    @Override
+    public void moveTo(int destinationX, int destinationY, int speed) {
+        int deltaX = destinationX - x;
+        int deltaY = destinationY - y;
+
+        double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        double timeToReach = distance / speed;
+
+        while (timeToReach > 0) {
+            double step = Math.min(10, timeToReach); // Шаг не более 10 единиц
+            x += (int) (deltaX / distance * step);
+            y += (int) (deltaY / distance * step);
+
+            // Вывод координат
+            System.out.printf("%s is now at coordinates (%d, %d)%n", name, x, y);
+
+            timeToReach -= step;
+        }
     }
 
     @Override
@@ -38,15 +79,9 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
     }
 
     @Override
-    public void moveTo(Object destination) {
-        setState(State.MOVE);
-        System.out.printf("%s is moving to %s %n", name, destination);
-    }
-
-    @Override
     public void sayTo(Human person, String speech) {
         setState(State.SPEAK);
-        System.out.printf("%s say to %s that %s %n", name, person.name, speech);
+        System.out.printf("%s say to %s that %s %n", name, person.getName(), speech);
     }
     public int getHealth() {
         return health;
@@ -54,5 +89,10 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    @Override
+    public void moveTo(Object destination) {
+
     }
 }
