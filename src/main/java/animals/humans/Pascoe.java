@@ -83,6 +83,7 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
         setState(State.SPEAK);
         System.out.printf("%s say to %s that %s %n", name, person.getName(), speech);
     }
+
     public int getHealth() {
         return health;
     }
