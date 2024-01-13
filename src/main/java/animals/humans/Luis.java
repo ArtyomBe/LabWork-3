@@ -71,7 +71,8 @@ public class Luis extends Human implements Terrible, Screamable, Cryable, Thinka
 
     @Override
     public void printCoordinates() {
-        System.out.printf("%s's coordinates: (%d, %d)%n", name, x, y);
+        String location = getLocationName(x, y);
+        System.out.printf("%s's coordinates: (%d, %d) - %s%n", name, x, y, location);
     }
 
     @Override
@@ -88,12 +89,26 @@ public class Luis extends Human implements Terrible, Screamable, Cryable, Thinka
             y += (int) (deltaY / distance * step);
 
             // Вывод координат
-            System.out.printf("%s is now at coordinates (%d, %d)%n", name, x, y);
+            String location = getLocationName(x, y);
+            System.out.printf("%s is now at coordinates (%d, %d) - %s%n", name, x, y, location);
 
             timeToReach -= step;
         }
     }
 
+    private String getLocationName(int x, int y) {
+        if (x == 100 && y == 125) {
+            return String.format("Под луной - (%d, %d)", x, y);
+        } else if (x == 20 && y == 165) {
+            return String.format("Лес - (%d, %d)", x, y);
+        } else if (x == 60 && y == 75) {
+            return String.format("Возле двери - (%d, %d)", x, y);
+        } else if (x == 65 && y == 65) {
+            return String.format("Шевелящиеся кости - (%d, %d)", x, y);
+        } else {
+            return String.format("Неизвестное местоположение - (%d, %d)", x, y);
+        }
+    }
     public int getHealth() {
         return health;
     }

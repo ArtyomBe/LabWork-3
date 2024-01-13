@@ -1,7 +1,12 @@
 package animals.humans;
 
 import animals.humans.states.State;
-import interfaces.*;
+import interfaces.CoordinatesManager;
+import interfaces.Grinning;
+import interfaces.Movable;
+import interfaces.Sayable;
+import interfaces.Stayable;
+import interfaces.Upperable;
 
 public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayable, CoordinatesManager {
     public Pascoe(boolean isAlive, int health, int initialX, int initialY) {
@@ -25,9 +30,24 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
         return y;
     }
 
+    private String getLocationName(int x, int y) {
+        if (x == 100 && y == 125) {
+            return String.format("Под луной - (%d, %d)", x, y);
+        } else if (x == 20 && y == 165) {
+            return String.format("Лес - (%d, %d)", x, y);
+        } else if (x == 60 && y == 75) {
+            return String.format("Возле двери - (%d, %d)", x, y);
+        } else if (x == 65 && y == 65) {
+            return String.format("Шевелящиеся кости - (%d, %d)", x, y);
+        } else {
+            return String.format("Неизвестное местоположение - (%d, %d)", x, y);
+        }
+    }
+
     @Override
     public void printCoordinates() {
-        System.out.printf("%s's coordinates: (%d, %d)%n", name, x, y);
+        String location = getLocationName(x, y);
+        System.out.printf("%s's coordinates: (%d, %d) - %s%n", name, x, y, location);
     }
 
     @Override
@@ -44,10 +64,15 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
             y += (int) (deltaY / distance * step);
 
             // Вывод координат
-            System.out.printf("%s is now at coordinates (%d, %d)%n", name, x, y);
+            String location = getLocationName(x, y);
+            System.out.printf("%s is now at coordinates (%d, %d) - %s%n", name, x, y, location);
 
             timeToReach -= step;
         }
+
+        // Проверка местоположения после перемещения
+        System.out.println("Checking location after moving:");
+        printCoordinates();
     }
 
     @Override
@@ -67,14 +92,14 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
         System.out.println("The bloody lips parted, exposing teeth; the disfigured face shone ghastly white under the moon. %n");
     }
 
-    public Upperable hand(){
+    public Upperable hand() {
         Upperable hand = () -> {
             System.out.printf("%s raised his hand %n", name);
         };
         return hand;
     }
 
-    public void pointTo(Object something){
+    public void pointTo(Object something) {
         System.out.printf("%s point out to %s %n", name, something);
     }
 
@@ -94,6 +119,6 @@ public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayabl
 
     @Override
     public void moveTo(Object destination) {
-
+        System.out.printf("%s is moving towards %s %n", name, destination);
     }
 }

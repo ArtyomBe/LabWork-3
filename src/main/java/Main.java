@@ -14,7 +14,7 @@ public class Main {
         Cat smack = new Smack(false);
         Grave smacksGrave = new Grave(smack);
 
-        Pascoe pascoe = new Pascoe(false, 80, 75, 65);
+        Pascoe pascoe = new Pascoe(false, 80, 60, 75);
         pascoe.printCoordinates();
         Luis luis = new Luis(true, 68, 54, 32);
         luis.printCoordinates();
