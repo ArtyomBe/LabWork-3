@@ -9,8 +9,8 @@ public enum State {
     MOVE("move"),
     THINK("think"),
     CROAK("croak"),
-    SPEAK("speak");
-
+    SPEAK("speak"),
+    DEAD("dead");
     private final String state;
     State(String state){
         this.state = state;

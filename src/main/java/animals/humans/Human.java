@@ -7,8 +7,32 @@ import animals.types.Type;
 import java.util.Objects;
 
 public abstract class Human extends Animal {
-    protected Human(String name) {
-        super(name, Type.HUMAN, true); // Предположим, что все люди изначально живы
+    protected int x;
+    protected int y;
+    protected int health;
+
+    protected Human(String name, int health, int initialX, int initialY) {
+        super(name, Type.HUMAN, true); // Возвращаем isAlive в аргументы конструктора суперкласса
+        this.health = health;
+        this.x = initialX;
+        this.y = initialY;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setCoordinates(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getHealth() {
+        return health;
     }
 
     protected String description = "";
@@ -45,14 +69,15 @@ public abstract class Human extends Animal {
         Human human = (Human) o;
         return Objects.equals(description, human.description)
                 && Objects.equals(name, human.name)
-                && Objects.equals(isAlive, human.isAlive());
+                && Objects.equals(health, human.health);
     }
 
     public String getName() {
         return name;
     }
+
     @Override
     public int hashCode() {
-        return Objects.hash(description, name, isAlive);
+        return Objects.hash(description, name, health);
     }
 }
