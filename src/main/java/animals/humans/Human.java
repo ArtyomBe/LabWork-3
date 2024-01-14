@@ -12,11 +12,11 @@ public abstract class Human extends Animal implements CoordinatesManager {
     protected int y;
     protected int health;
 
-    protected Human(String name, int health, int initialX, int initialY) {
+    protected Human(String name, int health, int X_0, int Y_0) {
         super(name, Type.HUMAN, true);
         this.health = health;
-        this.x = initialX;
-        this.y = initialY;
+        this.x = X_0;
+        this.y = Y_0;
     }
 
     public int getX() {
@@ -111,7 +111,7 @@ public abstract class Human extends Animal implements CoordinatesManager {
         } else if (x == 65 && y == 65) {
             return String.format("Шевелящиеся кости - (%d, %d)", x, y);
         } else {
-            return String.format("Неизвестное местоположение - (%d, %d)", x, y);
+            return "";
         }
     }
 
@@ -119,6 +119,6 @@ public abstract class Human extends Animal implements CoordinatesManager {
     @Override
     public void printCoordinates() {
         String location = getLocationName(x, y);
-        System.out.printf("%s's coordinates: (%d, %d) - %s%n", name, x, y, location);
+        System.out.printf("%s's coordinates: (%d, %d)  %s%n", name, x, y, location);
     }
 }

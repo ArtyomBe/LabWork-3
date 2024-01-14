@@ -4,9 +4,9 @@ import animals.humans.states.State;
 import interfaces.*;
 
 public class Pascoe extends Human implements Stayable, Grinning, Movable, Sayable {
-    public Pascoe(boolean isAlive, int health, int initialX, int initialY) {
-        super("Pascoe", health, initialX, initialY);
-        setDescription("dead");
+    public Pascoe(boolean isAlive, int health, int X_0, int Y_0) {
+        super("Pascoe", health, X_0, Y_0);
+        setDescription("alive");
     }
 
     @Override

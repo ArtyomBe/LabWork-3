@@ -4,8 +4,8 @@ import animals.humans.states.State;
 import interfaces.*;
 
 public class Luis extends Human implements Terrible, Screamable, Cryable, Thinkable, Fallable {
-    public Luis(boolean isAlive, int health, int initialX, int initialY) {
-        super("Luis", health, initialX, initialY);
+    public Luis(boolean isAlive, int health, int X_0, int Y_0) {
+        super("Luis", health, X_0, Y_0);
         setDescription("alive");
     }
 
