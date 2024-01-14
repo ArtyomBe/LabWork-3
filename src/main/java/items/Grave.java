@@ -22,7 +22,7 @@ public class Grave {
 
     @Override
     public String toString() {
-        return String.format("Grave of the %s which says %s was %s", dead.type, dead.name, dead.getDescription());
+        return String.format("«%s %s  %s, он был послушным»", dead.type, dead.name, dead.getDescription());
     }
 
     @Override

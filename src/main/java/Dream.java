@@ -3,12 +3,10 @@ import exceptions.WakeUpException;
 import items.Bones;
 
 public class Dream {
-    public Dream(Animal[] persons, Object[] items) {
+    public Dream(Animal[] persons) {
         this.persons = persons;
-        this.items = items;
     }
     public final Animal[] persons;
-    public final Object[] items;
 
     public Bones bonesTurning(Object item){
         item = null;

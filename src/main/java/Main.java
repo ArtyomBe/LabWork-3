@@ -10,78 +10,100 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws WakeUpException {
+    public static void main(String[] args) throws WakeUpException, InterruptedException {
+        Pascoe pascoe = new Pascoe(true, 100, 0, 0, 0);
+        Luis luis = new Luis(true, 20, 35, 15, 0);
         Cat smack = new Smack(false);
         Grave smacksGrave = new Grave(smack);
+        Dream dream = new Dream(new Animal[]{pascoe, luis});
 
-        Pascoe pascoe = new Pascoe(true, 80, 60, 75);
-        pascoe.printCoordinates();
-        Luis luis = new Luis(true, 68, 54, 32);
-        luis.printCoordinates();
-        luis.moveTo(20, 165);
-        luis.printCoordinates();
-        double distance = pascoe.calculateDistance(luis);
+        try {
+            pascoe.moveTo(30, 13);
+            pascoe.calculateDistance(luis);
+            pascoe.increaseFear(15);
+            pascoe.lookAt(smacksGrave);
+            pascoe.lookAt(luis);
+            Upperable hand = pascoe.hand();
+            hand.up();
+            pascoe.pointTo("что-то");
 
-        List<String> phrasesPascoe = Arrays.asList(
-                "Нельзя открывать дверь",
-                "Не ходи туда, как бы тебе этого ни хотелось.",
-                "Нельзя разрушать этой границы.",
-                "Помни: там больше силы, чем ты думаешь.",
-                "Это древняя сила, и она не знает покоя.",
-                "Помни об этом."
-        );
+            luis.lookAt("туда");
+            luis.scream();
+            luis.increaseFear(13);
+            luis.cry();
 
-        List<String> phrasesLuis = Arrays.asList(
-                "Вечернее небо расцвело разноцветными отблесками, словно художник пытался передать на холсте магию заката.",
-                "Старый маяк, словно страж снов, молча освещал темные воды океана, зовя моряков к безопасному пристанищу.",
-                "Аромат свежесваренного кофе наполнил комнату, будто маленький кусочек уюта всплыл в серой повседневности.",
-                "Листья на деревьях шептались в весеннем ветерке, словно тайные послания, которые только природа понимает.",
-                "Дети на пляже с удовольствием строили песчаные замки, будто маленькие архитекторы среди берегового песка.",
-                "Вечером город просыпался к огням, словно тысячи звезд спускались с небес, чтобы озарить городскую суету."
-        );
+            Bones bones = dream.bonesTurning(new Brushwood());
+            bones.move();
+            bones.snap();
+            int luisX = luis.getX();
+            int luisY = luis.getY();
+            pascoe.moveTo(luisX, luisY);
 
-        Dream dream = new Dream(new Animal[]{pascoe, luis}, new Object[]{smacksGrave});
+            luis.think("Ты должен закричать, чтобы проснуться; неважно, что ты скажешь Рэчел, Элли, Гэджу, соседям, ты должен закричать, чтобы проснуться. Закричатьчтобыпроснутьсязакричатьчтобы..");
+            luis.croak();
+            luis.fallOnKnees();
 
-        pascoe.stayAround(smacksGrave);
-        pascoe.lookAt(luis);
+            List<String> phrasesPascoe = Arrays.asList(
+                    "Нельзя открывать дверь",
+                    "Не ходи туда, как бы тебе этого ни хотелось.",
+                    "Нельзя разрушать этой границы.",
+                    "Помни: там больше силы, чем ты думаешь.",
+                    "Это древняя сила, и она не знает покоя.",
+                    "Помни об этом."
+            );
 
-        luis.terrible();
-        pascoe.grin();
+            List<String> phrasesLuis = Arrays.asList(
+                    "Почему? Что произойдет, если я открою дверь? Расскажи мне, что за границей.",
+                    "Ты говоришь о древней силе, но что конкретно происходит? Почему мне нельзя туда пойти? Что за граница?",
+                    "Что за границей? Почему даже мысль о разрушении границы наполняет тебя ужасом и предчувствием неизбежной тьмы?",
+                    "Какие загадочные силы скрываются за таинственными вратами? Почему предостережение о присутствии гораздо более могущественных сил наполняет ужасом и странным чувствами?",
+                    "Почему эта древняя сила не знает покоя? Какие тайны она хранит и как она взаимодействует с нашим миром?",
+                    "Паскоу странный... Он мне так-то знаком. Но почему его слова вызывают во мне чувство неопределенности и неуверенности? Может быть, у него свои тайные мотивы?"
+            );
 
-        Upperable hand = pascoe.hand();
-        hand.up();
-        Object something = new Object() {
-            @Override
-            public String toString() {
-                return "something";
-            }
-        };
-        pascoe.pointTo(something);
-
-        luis.lookAt(something);
-        luis.scream();
-        luis.cry();
-
-        Bones bones = dream.bonesTurning(new Brushwood());
-        bones.move();
-        bones.snap();
-
-        pascoe.moveTo(luis);
-        luis.think("You have to scream to wake up; no matter what you say to Rachel, Ellie, Gage, the neighbors, you have to scream to wake up. Scream to ask to scream to..");
-        luis.croak();
-        luis.fallOnKnees();
-
-        pascoe.sayTo(luis, "You're not supposed to open the door.");
-        pascoe.lookAt(luis);
-        pascoe.sayTo(luis, "Don't go there, no matter how much you want to. This boundary must not be destroyed. Remember: There's more power there than you think. It is an ancient force, and it knows no rest. Remember that.");
-
-        System.out.println("Здоровье Luis до установки: " + luis.getHealth());
-        luis.setHealth(75); // Пример установки здоровья для Luis
-        System.out.println("Здоровье Luis после установки: " + luis.getHealth());
-        pascoe.setHealth(34);
-        System.out.println(pascoe.getHealth());
-
-        CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
-        dream.wakeUp();
+            CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
+            pascoe.lookAt(luis);
+            CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
+            pascoe.pointTo(bones);
+            luis.setFear(20);
+            CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
+            luis.increaseFear(5);
+            CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
+            luis.increaseFear(5);
+            luis.increaseFear(5);
+            pascoe.calculateDistance(luis);
+            Thread.sleep(150);
+            luis.printState();
+            Thread.sleep(150);
+            pascoe.printState();
+            Thread.sleep(150);
+            CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
+            CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
+            luis.increaseFear(2);
+            dream.wakeUp();
+        } catch (WakeUpException e) {
+            System.err.println("Произошла ошибка: " + e.getMessage());
+        }
+        Thread.sleep(1000);
+        System.out.printf("Сознание %s окутал туман....%n", pascoe.getName());
+        Thread.sleep(200);
+        System.out.printf("Таинственный мрак омрачил разум %s....%n", pascoe.getName());
+        Thread.sleep(200);
+        System.out.printf("Вихри загадочности затуманили поток мыслей %s....%n", pascoe.getName());
+        Thread.sleep(200);
+        pascoe.moveTo(-100, -100);
+        System.out.printf("----------------------------------------%n");
+        Thread.sleep(250);
+        System.out.printf("%s подумал\u001B[3m «чёрррт, что здесь происходит, о нет, я в %s...».\u001B[0m%n", pascoe.getName(), pascoe.getLocationName(pascoe.getX(), pascoe.getY()));
+        Thread.sleep(150);
+        luis.decreaseFear(100);
+        Thread.sleep(150);
+        pascoe.decreaseFear(100);
+        Thread.sleep(250);
+        pascoe.printState();
+        Thread.sleep(250);
+        luis.printState();
+        Thread.sleep(250);
+        System.out.printf("Эххххххх, я опять уснул в коворкинге в %s.", pascoe.getLocationName(pascoe.getX(), pascoe.getY()));
     }
 }

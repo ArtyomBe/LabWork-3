@@ -3,15 +3,15 @@ package items;
 public class Bones {
 
     public void snap() {
-        System.out.println("Bones clicking");
+        System.out.printf("обнажив зубы%n");
     }
 
     public void move() {
-        System.out.println("Bones moving");
+        System.out.print("Окровавленные губы раздвинулись, ");
     }
 
     @Override
     public String toString() {
-        return "A pile of bones";
+        return "шевелящиеся кости.";
     }
 }

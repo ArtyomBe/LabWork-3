@@ -9,5 +9,5 @@ public interface CoordinatesManager {
 
     void printCoordinates();
 
-    void moveTo(int newX, int newY);
+    void moveTo(int newX, int newY) throws InterruptedException;
 }
