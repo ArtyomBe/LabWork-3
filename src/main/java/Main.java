@@ -14,11 +14,11 @@ public class Main {
         Cat smack = new Smack(false);
         Grave smacksGrave = new Grave(smack);
 
-        Pascoe pascoe = new Pascoe(false, 80, 60, 75);
+        Pascoe pascoe = new Pascoe(true, 80, 60, 75);
         pascoe.printCoordinates();
         Luis luis = new Luis(true, 68, 54, 32);
         luis.printCoordinates();
-        luis.moveTo(13, 43, 2);
+        luis.moveTo(20, 165);
         luis.printCoordinates();
 
         List<String> phrasesPascoe = Arrays.asList(
@@ -77,6 +77,8 @@ public class Main {
         System.out.println("Здоровье Luis до установки: " + luis.getHealth());
         luis.setHealth(75); // Пример установки здоровья для Luis
         System.out.println("Здоровье Luis после установки: " + luis.getHealth());
+        pascoe.setHealth(34);
+        System.out.println(pascoe.getHealth());
 
         CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
         dream.wakeUp();

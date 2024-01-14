@@ -3,16 +3,17 @@ package animals.humans;
 import animals.Animal;
 import animals.humans.states.State;
 import animals.types.Type;
+import interfaces.CoordinatesManager;
 
 import java.util.Objects;
 
-public abstract class Human extends Animal {
+public abstract class Human extends Animal implements CoordinatesManager {
     protected int x;
     protected int y;
     protected int health;
 
     protected Human(String name, int health, int initialX, int initialY) {
-        super(name, Type.HUMAN, true); // Возвращаем isAlive в аргументы конструктора суперкласса
+        super(name, Type.HUMAN, true);
         this.health = health;
         this.x = initialX;
         this.y = initialY;
@@ -33,6 +34,10 @@ public abstract class Human extends Animal {
 
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     protected String description = "";
@@ -79,5 +84,41 @@ public abstract class Human extends Animal {
     @Override
     public int hashCode() {
         return Objects.hash(description, name, health);
+    }
+
+    // Новые методы в суперклассе Human
+    public void moveTo(int newX, int newY) {
+        while (x != newX || y != newY) {
+            if (x !=newX) {
+                x += (newX > x) ? 1 : -1;
+            }
+
+            printCoordinates();
+
+            if (y != newY) {
+                y += (newY > y) ? 1 : -1;
+            }
+        }
+    }
+
+    protected String getLocationName(int x, int y) {
+        if (x == 100 && y == 125) {
+            return String.format("Под луной - (%d, %d)", x, y);
+        } else if (x == 20 && y == 165) {
+            return String.format("Лес - (%d, %d)", x, y);
+        } else if (x == 60 && y == 75) {
+            return String.format("Возле двери - (%d, %d)", x, y);
+        } else if (x == 65 && y == 65) {
+            return String.format("Шевелящиеся кости - (%d, %d)", x, y);
+        } else {
+            return String.format("Неизвестное местоположение - (%d, %d)", x, y);
+        }
+    }
+
+    // Реализация интерфейса CoordinatesManager
+    @Override
+    public void printCoordinates() {
+        String location = getLocationName(x, y);
+        System.out.printf("%s's coordinates: (%d, %d) - %s%n", name, x, y, location);
     }
 }

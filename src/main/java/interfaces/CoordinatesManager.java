@@ -9,5 +9,5 @@ public interface CoordinatesManager {
 
     void printCoordinates();
 
-    void moveTo(int destinationX, int destinationY, int speed);
+    void moveTo(int newX, int newY);
 }
