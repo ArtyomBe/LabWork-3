@@ -10,7 +10,7 @@ public enum State {
     THINK("think"),
     CROAK("croak"),
     SPEAK("speak"),
-    DEAD("dead");
+    FAILED_STATE("failed");
     private final String state;
     State(String state){
         this.state = state;

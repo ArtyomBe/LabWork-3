@@ -20,6 +20,7 @@ public class Main {
         luis.printCoordinates();
         luis.moveTo(20, 165);
         luis.printCoordinates();
+        double distance = pascoe.calculateDistance(luis);
 
         List<String> phrasesPascoe = Arrays.asList(
                 "Нельзя открывать дверь",

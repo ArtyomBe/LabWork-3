@@ -121,4 +121,21 @@ public abstract class Human extends Animal implements CoordinatesManager {
         String location = getLocationName(x, y);
         System.out.printf("%s's coordinates: (%d, %d)  %s%n", name, x, y, location);
     }
+    public double calculateDistance(Human otherHuman) {
+        int xDistance = Math.abs(this.x - otherHuman.x);
+        int yDistance = Math.abs(this.y - otherHuman.y);
+
+        double distance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+
+        if (distance <= 5.0) {
+            System.out.printf("Distance between %s and %s: %.2f - близко%n", this.getName(), otherHuman.getName(), distance);
+        } else if (distance > 5.0 && distance <= 15.0) {
+            System.out.printf("Distance between %s and %s: %.2f - довольно-таки недалеко%n", this.getName(), otherHuman.getName(), distance);
+        } else {
+            System.out.printf("Distance between %s and %s: %.2f - далековато%n", this.getName(), otherHuman.getName(), distance);
+        }
+        return distance;
+    }
+
+
 }
