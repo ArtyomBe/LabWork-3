@@ -69,12 +69,20 @@ public abstract class Human extends Animal implements CoordinatesManager {
     }
 
     // Методы для работы со здоровьем и страхом
-    public int getHealth() {
+    /*public int setHealth() {
+        if (health == 0) {
+            setDescription("dead");
+        }
         return health;
-    }
+    }*/
 
-    public void setHealth(int health) {
+    public int getHealth(int health) {
         this.health = health;
+        if (health == 0) {
+            setDescription("dead");
+            Human.isAlive();
+        }
+        return health;
     }
 
     public int getFear() {
@@ -122,7 +130,7 @@ public abstract class Human extends Animal implements CoordinatesManager {
         return description;
     }
 
-    protected void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

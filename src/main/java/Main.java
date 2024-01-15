@@ -93,6 +93,9 @@ public class Main {
         Thread.sleep(200);
         pascoe.moveTo(-100, -100);
         System.out.printf("----------------------------------------%n");
+        pascoe.getHealth(0);
+        luis.getHealth(0);
+        System.err.printf("%n%s и %s %s%n", pascoe.getName(), luis.getName(), pascoe.getDescription());
         Thread.sleep(250);
         System.out.printf("%s подумал\u001B[3m «чёрррт, что здесь происходит, о нет, я в %s...».\u001B[0m%n", pascoe.getName(), pascoe.getLocationName(pascoe.getX(), pascoe.getY()));
         Thread.sleep(150);
@@ -104,6 +107,7 @@ public class Main {
         Thread.sleep(250);
         luis.printState();
         Thread.sleep(250);
-        System.out.printf("Эххххххх, я опять уснул в коворкинге в %s.", pascoe.getLocationName(pascoe.getX(), pascoe.getY()));
+        System.out.printf("Эххххххх, я опять уснул в коворкинге в %s.%n", pascoe.getLocationName(pascoe.getX(), pascoe.getY()));
+        System.out.println("\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620");
     }
 }

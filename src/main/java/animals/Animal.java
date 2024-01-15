@@ -10,11 +10,11 @@ public abstract class Animal {
     }
     public final String name;
     public final Type type;
-    protected boolean isAlive;
+    public static boolean isAlive;
 
-    public boolean isAlive(){
+    public static boolean isAlive() {
+        System.out.println("Current state: " + isAlive);
         return isAlive;
     }
-
     public abstract String getDescription();
 }
