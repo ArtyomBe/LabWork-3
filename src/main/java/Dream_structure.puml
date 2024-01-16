@@ -1,0 +1,251 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "Dream",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1206139674 { 
+   	label=humans
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Human1629002563[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Human</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   description: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   fear: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   health: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   state: State [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ decreaseFear(amount: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ increaseFear(amount: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printState()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Luis1629002563[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Luis</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   fear: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ croak()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ cry()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fallOnKnees()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ lookAt(obj: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ scream()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ terrible()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ think(minds: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Pascoe1629002563[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Pascoe</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ decreaseFear(amount: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ grin()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hand(): Upperable</TD></TR>
+<TR><TD ALIGN="LEFT" >+ lookAt(obj: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pointTo(something: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sayTo(person: Human, speech: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stayAround(obj: Object)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1871919611 { 
+   	label=coordinates
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Point1871919611[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Point</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   x: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   y: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ x(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ y(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_66295779 { 
+   	label=Dream
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Dream66295779[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Dream</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   persons: Animal[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ bonesTurning(item: Object): Bones</TD></TR>
+<TR><TD ALIGN="LEFT" >+ wakeUp()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_856935945 { 
+   	label=animals
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Animal856935945[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Animal</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   coordinates: Point [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   isAlive: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   type: Type [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Cat856935945[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Cat</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   description: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Smack856935945[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Smack</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Animal856935945 -> Cat856935945[arrowhead=none, arrowtail=empty, dir=both];
+Animal856935945 -> Human1629002563[arrowhead=none, arrowtail=empty, dir=both];
+Animal856935945 -> Point1871919611[label="coordinates
+[0..1]"];
+Cat856935945 -> Smack856935945[arrowhead=none, arrowtail=empty, dir=both];
+Dream66295779 -> Animal856935945[label="persons
+[0..*]"];
+Human1629002563 -> Luis1629002563[arrowhead=none, arrowtail=empty, dir=both];
+Human1629002563 -> Pascoe1629002563[arrowhead=none, arrowtail=empty, dir=both];
+    
+}
+@enduml

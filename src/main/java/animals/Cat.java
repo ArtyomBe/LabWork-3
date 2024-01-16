@@ -1,14 +1,12 @@
 package animals;
-
 import animals.types.Type;
-
 import java.util.Objects;
 
-public abstract class Cat extends Animal{
-    protected Cat(String name, boolean is_alive) {
-        super(name, Type.CAT, is_alive);
-    }
+public abstract class Cat extends Animal {
 
+    protected Cat(String name, boolean isAlive) {
+        super(name, Type.CAT, isAlive);
+    }
     protected String description = "";
 
     @Override
@@ -24,6 +22,9 @@ public abstract class Cat extends Animal{
     public String toString() {
         return "Cat{" +
                 "description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", isAlive=" + isAlive +
                 '}';
     }
 
@@ -39,6 +40,6 @@ public abstract class Cat extends Animal{
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, name, isAlive);
+        return Objects.hash(description, name, type, isAlive);
     }
 }

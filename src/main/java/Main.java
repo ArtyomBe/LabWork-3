@@ -1,43 +1,46 @@
 import animals.*;
-import animals.humans.CommunicationMethod;
 import exceptions.WakeUpException;
 import items.*;
 import interfaces.Upperable;
-import animals.humans.Pascoe;
-import animals.humans.Luis;
+import animals.humans.*;
 
+import coordinates.*;
 import java.util.Arrays;
 import java.util.List;
-
 public class Main {
-    public static void main(String[] args) throws WakeUpException, InterruptedException {
-        Pascoe pascoe = new Pascoe(true, 100, 0, 0, 0);
-        Luis luis = new Luis(true, 20, 35, 15, 0);
+    public static void main(String[] args) throws InterruptedException {
+        Pascoe pascoe = new Pascoe(true, 100, 0);
+        Luis luis = new Luis(true, 20, 35);
         Cat smack = new Smack(false);
         Grave smacksGrave = new Grave(smack);
-        Dream dream = new Dream(new Animal[]{pascoe, luis});
+        CoordinatesMap<Animal> coordinatesMap = new CoordinatesMap<>();
+        coordinatesMap.addObject(pascoe, new Point(10, 10));
+        coordinatesMap.addObject(luis, new Point(35, 15));
+        coordinatesMap.addObject(smack, new Point(30, 13));
 
+        Dream dream = new Dream(new Animal[]{pascoe, luis});
         try {
-            pascoe.moveTo(30, 13);
-            pascoe.calculateDistance(luis);
+            Location deadSmakyLocation = new Location("кот Смэки, он был послушным.", new Point(30, 14));
+            coordinatesMap.addLocation(deadSmakyLocation);
+            String deadSmakyLocationName = coordinatesMap.getLocationName(deadSmakyLocation.coordinates());
+            System.out.printf("%s переместился к %s%n", pascoe.getName(), deadSmakyLocationName);
+            coordinatesMap.moveTo(luis, new Point(34,21));
             pascoe.increaseFear(15);
             pascoe.lookAt(smacksGrave);
             pascoe.lookAt(luis);
             Upperable hand = pascoe.hand();
             hand.up();
             pascoe.pointTo("что-то");
-
             luis.lookAt("туда");
             luis.scream();
             luis.increaseFear(13);
             luis.cry();
-
             Bones bones = dream.bonesTurning(new Brushwood());
             bones.move();
             bones.snap();
-            int luisX = luis.getX();
-            int luisY = luis.getY();
-            pascoe.moveTo(luisX, luisY);
+            int luisX = coordinatesMap.getX(luis);
+            int luisY = coordinatesMap.getY(luis);
+            coordinatesMap.moveTo(pascoe, new Point(luisX, luisY));
 
             luis.think("Ты должен закричать, чтобы проснуться; неважно, что ты скажешь Рэчел, Элли, Гэджу, соседям, ты должен закричать, чтобы проснуться. Закричатьчтобыпроснутьсязакричатьчтобы..");
             luis.croak();
@@ -67,47 +70,38 @@ public class Main {
             pascoe.pointTo(bones);
             luis.setFear(20);
             CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
-            luis.increaseFear(5);
             CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
             luis.increaseFear(5);
             luis.increaseFear(5);
-            pascoe.calculateDistance(luis);
-            Thread.sleep(150);
             luis.printState();
-            Thread.sleep(150);
             pascoe.printState();
-            Thread.sleep(150);
             CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
             CommunicationMethod.communicate(pascoe, luis, phrasesPascoe, phrasesLuis);
             luis.increaseFear(2);
             dream.wakeUp();
         } catch (WakeUpException e) {
             System.err.println("Произошла ошибка: " + e.getMessage());
+        } catch (InterruptedException e) {
+            System.err.println("Произошла ошибка при ожидании: " + e.getMessage());
         }
-        Thread.sleep(1000);
+
         System.out.printf("Сознание %s окутал туман....%n", pascoe.getName());
-        Thread.sleep(200);
         System.out.printf("Таинственный мрак омрачил разум %s....%n", pascoe.getName());
-        Thread.sleep(200);
         System.out.printf("Вихри загадочности затуманили поток мыслей %s....%n", pascoe.getName());
-        Thread.sleep(200);
-        pascoe.moveTo(-100, -100);
+        coordinatesMap.moveTo(pascoe, new Point(-100,-100));
         System.out.printf("----------------------------------------%n");
-        pascoe.getHealth(0);
-        luis.getHealth(0);
+        pascoe.setHealth(0);
+        luis.setHealth(0);
+        Thread.sleep(100);
         System.err.printf("%n%s и %s %s%n", pascoe.getName(), luis.getName(), pascoe.getDescription());
-        Thread.sleep(250);
-        System.out.printf("%s подумал\u001B[3m «чёрррт, что здесь происходит, о нет, я в %s...».\u001B[0m%n", pascoe.getName(), pascoe.getLocationName(pascoe.getX(), pascoe.getY()));
-        Thread.sleep(150);
+        Location itmoLocation = new Location("ИТМО", new Point(-100, -100));
+        coordinatesMap.addLocation(itmoLocation);
+        String itmoLocationName = coordinatesMap.getLocationName(itmoLocation.coordinates());
+        System.out.printf("%s подумал\u001B[3m «чёрррт, что здесь происходит???, о нет, я в %s...».\u001B[0m%n", pascoe.getName(), itmoLocationName);
         luis.decreaseFear(100);
-        Thread.sleep(150);
         pascoe.decreaseFear(100);
-        Thread.sleep(250);
         pascoe.printState();
-        Thread.sleep(250);
         luis.printState();
-        Thread.sleep(250);
-        System.out.printf("Эххххххх, я опять уснул в коворкинге в %s.%n", pascoe.getLocationName(pascoe.getX(), pascoe.getY()));
-        System.out.println("\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620\u2620");
+        System.out.printf("%s: Эххххххх, я опять уснул в коворкинге в %s!%n", pascoe.getName(), itmoLocationName);
     }
 }

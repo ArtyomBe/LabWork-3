@@ -3,15 +3,17 @@ package animals.humans;
 import animals.humans.states.State;
 import interfaces.*;
 
+import java.util.Objects;
+
 public class Luis extends Human implements Terrible, Screamable, Cryable, Thinkable, Fallable {
+
     private int fear;
 
-    public Luis(boolean isAlive, int health, int X_0, int Y_0, int fear) {
-        super("Luis", health, X_0, Y_0, fear);
-        setDescription("dead");
+    public Luis(boolean isAlive, int health, int fear) {
+        super("Luis", health, fear);
+        setDescription("alive");
     }
 
-    @Override
     public void lookAt(Object obj) {
         System.out.printf("%s поглядел %s%n", name, obj);
     }
@@ -53,21 +55,8 @@ public class Luis extends Human implements Terrible, Screamable, Cryable, Thinka
         System.out.printf("%s упал на колени%n", name);
     }
 
-    public int getFear() {
-        return fear;
-    }
-
-    public void setFear(int fear) {
-        this.fear = fear;
-    }
-
     @Override
-    public void increaseFear(int amount) {
-        super.increaseFear(amount);
-    }
-
-    @Override
-    public void decreaseFear(int amount) {
-        super.decreaseFear(amount);
+    public int hashCode() {
+        return Objects.hash(isAlive, health, fear);
     }
 }
