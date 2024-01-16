@@ -70,7 +70,7 @@ config=StructureConfiguration;
     "showPackageLevels": 2,
     "showDetailedClassStructure": true
   },
-  "rootClass": "Dream",
+  "rootClass": "Main",
   "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
 }
 diagram meta data end '/
@@ -83,13 +83,45 @@ digraph g {
     
 
 'nodes 
+subgraph cluster_100526016 { 
+   	label=items
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Bones100526016[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Bones</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ move()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ snap()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
 subgraph cluster_1206139674 { 
    	label=humans
 	labeljust=l
 	fillcolor="#ececec"
 	style=filled
    
-   Human1629002563[
+   CommunicationMethod1629002563[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CommunicationMethod</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ communicate(person1: Human, person2: Human, person1Phrases: List&lt;String&gt;, person2Phrases: List&lt;String&gt;)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Human1629002563[
 	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
 <TR><TD ALIGN="LEFT" >(C)Human</TD></TR>
 <HR/>
@@ -153,7 +185,44 @@ subgraph cluster_1871919611 {
 	fillcolor="#ececec"
 	style=filled
    
-   Point1871919611[
+   CoordinatesMap1871919611[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CoordinatesMap&lt;T&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   locationMap: HashMap&lt;Point, Location&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   objectsMap: HashMap&lt;T, Point&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addLocation(location: Location)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addObject(object: T, point: Point)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCoordinates(object: T): Point</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getLocationName(coordinates: Point): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getX(object: T): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getY(object: T): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ moveTo(object: T, point: Point)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Location1871919611[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Location</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   coordinates: Point [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ coordinates(): Point</TD></TR>
+<TR><TD ALIGN="LEFT" >+ name(): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Point1871919611[
 	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
 <TR><TD ALIGN="LEFT" >(C)Point</TD></TR>
 <HR/>
@@ -162,6 +231,25 @@ subgraph cluster_1871919611 {
 <HR/>
 <TR><TD ALIGN="LEFT" >+ x(): int</TD></TR>
 <TR><TD ALIGN="LEFT" >+ y(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2390489 { 
+   	label=Main
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Main2390489[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Main</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
 </TABLE>>
 	style=filled
 	margin=0
@@ -242,10 +330,18 @@ Animal856935945 -> Human1629002563[arrowhead=none, arrowtail=empty, dir=both];
 Animal856935945 -> Point1871919611[label="coordinates
 [0..1]"];
 Cat856935945 -> Smack856935945[arrowhead=none, arrowtail=empty, dir=both];
+CoordinatesMap1871919611 -> Location1871919611[label="locationMap
+[0..*]"];
+CoordinatesMap1871919611 -> Point1871919611[label="locationMap
+[0..*]"];
+CoordinatesMap1871919611 -> Point1871919611[label="objectsMap
+[0..*]"];
 Dream66295779 -> Animal856935945[label="persons
 [0..*]"];
 Human1629002563 -> Luis1629002563[arrowhead=none, arrowtail=empty, dir=both];
 Human1629002563 -> Pascoe1629002563[arrowhead=none, arrowtail=empty, dir=both];
+Location1871919611 -> Point1871919611[label="coordinates
+[0..1]"];
     
 }
 @enduml
