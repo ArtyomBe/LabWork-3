@@ -1,8 +1,6 @@
 package animals;
 
 import animals.types.Type;
-import coordinates.Point;
-
 import java.util.Objects;
 
 public abstract class Animal {
@@ -15,7 +13,6 @@ public abstract class Animal {
     public final String name;
     public final Type type;
     public boolean isAlive;
-    private Point coordinates;
 
     public boolean isAlive() {
         return isAlive;

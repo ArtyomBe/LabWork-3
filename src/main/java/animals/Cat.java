@@ -14,8 +14,8 @@ public abstract class Cat extends Animal {
         return description;
     }
 
-    protected void setDescription(String description) {
-        this.description = description;
+    protected void setDescription() {
+        this.description = "docile";
     }
 
     @Override

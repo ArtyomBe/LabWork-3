@@ -2,14 +2,8 @@ import animals.Animal;
 import exceptions.WakeUpException;
 import items.Bones;
 
-public class Dream {
-    public Dream(Animal[] persons) {
-        this.persons = persons;
-    }
-    public final Animal[] persons;
-
-    public Bones bonesTurning(Object item){
-        item = null;
+public record Dream(Animal[] persons) {
+    public Bones bonesTurning() {
         return new Bones();
     }
 

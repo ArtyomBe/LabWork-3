@@ -2,7 +2,6 @@ package coordinates;
 
 import coordinates.exceptions.LocationWithThoseCoordinatesAlreadyExistException;
 import coordinates.exceptions.ObjectAlreadyExistInMapException;
-import coordinates.exceptions.ObjectDoesNotExistInMapException;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -14,7 +13,7 @@ public class CoordinatesMap<T> {
     public void addLocation(Location location){
         Point locationCoordinates = location.coordinates();
         if (locationMap.get(locationCoordinates) != null) throw new LocationWithThoseCoordinatesAlreadyExistException(
-                String.format("Точка с такими координатами уже существует."));
+                "Точка с такими координатами уже существует.");
         locationMap.put(locationCoordinates, location);
     }
 
@@ -26,13 +25,12 @@ public class CoordinatesMap<T> {
 
     public void addObject(T object, Point point) {
         if (objectsMap.putIfAbsent(object, point) != null) { throw new ObjectAlreadyExistInMapException(
-                String.format("Объект был на карте был создан ранее. "));
+                "Объект был на карте был создан ранее. ");
         }
     }
 
     public Point getCoordinates(T object){
-        Point coordinates = objectsMap.get(object);
-        return coordinates;
+        return objectsMap.get(object);
     }
 
     public int getX(T object){

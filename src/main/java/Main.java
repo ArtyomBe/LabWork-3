@@ -7,10 +7,11 @@ import animals.humans.*;
 import coordinates.*;
 import java.util.Arrays;
 import java.util.List;
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        Pascoe pascoe = new Pascoe(true, 100, 0);
-        Luis luis = new Luis(true, 20, 35);
+        Pascoe pascoe = new Pascoe(100, 0);
+        Luis luis = new Luis(20, 35);
         Cat smack = new Smack(false);
         Grave smacksGrave = new Grave(smack);
         CoordinatesMap<Animal> coordinatesMap = new CoordinatesMap<>();
@@ -35,7 +36,7 @@ public class Main {
             luis.scream();
             luis.increaseFear(13);
             luis.cry();
-            Bones bones = dream.bonesTurning(new Brushwood());
+            Bones bones = dream.bonesTurning();
             bones.move();
             bones.snap();
             int luisX = coordinatesMap.getX(luis);
@@ -85,6 +86,7 @@ public class Main {
             System.err.println("Произошла ошибка при ожидании: " + e.getMessage());
         }
 
+        pascoe.sayTo(luis, "Oh no wtf is going one?");
         System.out.printf("Сознание %s окутал туман....%n", pascoe.getName());
         System.out.printf("Таинственный мрак омрачил разум %s....%n", pascoe.getName());
         System.out.printf("Вихри загадочности затуманили поток мыслей %s....%n", pascoe.getName());
@@ -103,5 +105,10 @@ public class Main {
         pascoe.printState();
         luis.printState();
         System.out.printf("%s: Эххххххх, я опять уснул в коворкинге в %s!%n", pascoe.getName(), itmoLocationName);
+        ICanDoAnonymClass anonymClass = () -> System.out.println("something");
+        anonymClass.something();
     }
+}
+interface ICanDoAnonymClass{
+    void something();
 }

@@ -5,9 +5,9 @@ import interfaces.*;
 
 import java.util.Objects;
 
-public class Pascoe extends Human implements Stayable, Grinning, Sayable {
+public class Pascoe extends Human {
 
-    public Pascoe(boolean isAlive, int health, int fear) {
+    public Pascoe(int health, int fear) {
         super("Pascoe", health, fear);
         setDescription("alive");
     }
@@ -17,30 +17,15 @@ public class Pascoe extends Human implements Stayable, Grinning, Sayable {
         System.out.printf("%s повернулся к %s%n", name, obj);
     }
 
-    @Override
-    public void stayAround(Object obj) {
-        System.out.printf("%s stay around %s%n", name, obj);
-    }
-
-    @Override
-    public void grin() {
-        System.out.printf("%s was grinning%n", name);
-        setState(State.SNEER);
-        System.out.println("The bloody lips parted, exposing teeth; the disfigured face shone ghastly white under the moon.%n");
-    }
-
     public Upperable hand() {
-        Upperable hand = () -> {
-            System.out.printf("%s поднял его руку%n", name);
-        };
-        return hand;
+        return () -> System.out.printf("%s поднял его руку%n", name);
     }
 
     public void pointTo(Object something) {
         System.out.printf("%s указал на %s%n", name, something);
     }
 
-    @Override
+
     public void sayTo(Human person, String speech) {
         setState(State.SPEAK);
         System.out.printf("%s say to %s that %s%n", name, person.getName(), speech);
@@ -48,8 +33,6 @@ public class Pascoe extends Human implements Stayable, Grinning, Sayable {
     @Override
     public void decreaseFear(int amount) {
         super.decreaseFear(amount);
-
-        // Дополнительные действия для Pascoe при уменьшении страха, если нужно
     }
     @Override
     public int hashCode() {

@@ -15,11 +15,6 @@ public class Grave {
         this.dead = dead;
     }
     private final Animal dead;
-
-    public Animal getDead() {
-        return dead;
-    }
-
     @Override
     public String toString() {
         return String.format("«%s %s  %s, он был послушным»", dead.type, dead.name, dead.getDescription());

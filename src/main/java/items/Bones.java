@@ -3,7 +3,8 @@ package items;
 public class Bones {
 
     public void snap() {
-        System.out.printf("обнажив зубы%n");
+        Teeth teeth = new Teeth();
+        System.out.printf(teeth.snap());
     }
 
     public void move() {
@@ -13,5 +14,10 @@ public class Bones {
     @Override
     public String toString() {
         return "шевелящиеся кости.";
+    }
+    public static class Teeth{
+        public String snap(){
+            return "обнажив зубы";
+        }
     }
 }
